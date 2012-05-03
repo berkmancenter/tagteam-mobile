@@ -5,7 +5,8 @@ $(document).ready(function(){
            
             for (var key in json.hubs) {
                 var val = json.hubs[key];
-                var output = '<li><a href="hub.html?id='+key+'" id="'+key+'" class="ui-link-inherit">'
+                var output = '<li><a href="hub.html?id='+key+'" data-transition="slidedown"';
+                    output += 'data-rel="dialog" id="'+key+'" class="ui-link-inherit">'
                 +'<h3 class="ui-li-heading">'+val.title+'</h3><p class="ui-li-desc">';
                             
                 if (val.description != null) {
@@ -21,13 +22,7 @@ $(document).ready(function(){
         });     
     } 
     
-    
-    function sizeButtons() {
-        $('#ui-bar ui-bar-c').height($('document').height() / 3);
-    }
-    
         getHubs();
-        sizeButtons();
         
         
 });
