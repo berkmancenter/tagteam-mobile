@@ -3,6 +3,7 @@ tagteam-mobile
 GSoC project by Yevhenii Vlasenko, mentored by Daniel Collis-Puro
 
 Objective: build jQuery mobile client for TagTeam.
+Result: working jQuery web application, working mobile app compiled through PhoneGap
 
 Plan of development:
 1. Building UI on jQuery.
