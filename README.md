@@ -8,7 +8,7 @@ Result: working jQuery web application, working mobile app compiled through Phon
 Plan of development:
 1. Building UI on jQuery.
   Pages:
-    hubs, menu, items, currentItem, about, search, searchResults, inputs, bookmarks, remixes, tags, filters, updates.
+    index, hub, items, currentItem, about, search, options, searchResults, inputs, bookmarks, remixes, tags, filters, updates.
 
 2. Writing AJAX data requests. Connecting recieved data with UI.
 
