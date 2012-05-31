@@ -7,11 +7,11 @@ $.extend({
 	$.getJSON('testhubs.json', {}, function(json){             
 	    for (var key in json.hubs) {
 		var val = json.hubs[key];
-		var output = '<li><a href="#" data-transition="slidedown"'+
+		var output = '<li><a href="hub.html" data-transition="slidedown"'+
 		'data-rel="dialog" id="hub-'+key+'" class="ui-link-inherit">' +
 		'<h3 class="ui-li-heading">'+val.title+'</h3><p class="ui-li-desc">';               
 		if (val.description != null) {
-		    output+=val.description;
+		    output += val.description;
 		}
 		output += '</p></a></li>';
 		$("#hubs").append(output);  
@@ -24,11 +24,14 @@ $.extend({
 	});
     },
     
-    getItems:function(from, to) {
+    getItems:function() {
 	$.getJSON('testitems.json', {}, function(json){             
 	    for (var key in json.hubs) {
-		    //------------
-		}
+		    var val = json.hubs[key];
+		var output = '<li>'+val.title+'</li>';
+		$("#items").append(output);  
+	    }
+	    $('#items').listview('refresh');
 	});     
     },
     

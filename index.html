@@ -15,20 +15,21 @@
         <script type="text/javascript" src="./js/tagteam.js"></script>
 	<script type="text/javascript">
 	    $(document).ready(function(){ 
-	    $.getHubs(); 
-	    //--localStorage.removeItem('name'); 
+		$.getHubs(); 
+		//--localStorage.removeItem('name'); 
 	    });
 	</script>
     </head>
     <body>
-        <div data-role="header" data-position="fixed">
-            <h1>Hubs</h1>
-            <a href="#" data-role="button" data-icon="gear" data-iconpos="notext" data-mini="true" data-inline="true" data-corners="true" data-shadow="false" data-iconshadow="false" data-wrapperels="span" class="ui-btn-left">options</a>
-            <a href="#" data-role="button" data-icon="search" data-iconpos="notext" data-mini="true" data-inline="true" data-corners="true" data-shadow="false" data-iconshadow="false" data-wrapperels="span" class="ui-btn-right">search</a>
-        </div>
-        <div data-role="content">
-            <ul id="hubs" data-role="listview" data-inset="true" data-theme="c" data-split-theme="a">
-            </ul>
+	<div data-role="page" id="index">
+            <div data-role="header" data-position="fixed">
+		<h1>Hubs</h1>
+		<a href="#" data-role="button" data-icon="gear" data-iconpos="notext" data-mini="true" data-inline="true" data-corners="true" data-shadow="false" data-iconshadow="false" data-wrapperels="span" class="ui-btn-left">options</a>
+		<a href="#" data-role="button" data-icon="search" data-iconpos="notext" data-mini="true" data-inline="true" data-corners="true" data-shadow="false" data-iconshadow="false" data-wrapperels="span" class="ui-btn-right">search</a>
+	    </div>
+            <div data-role="content">
+                <ul  id="hubs" data-role="listview" data-theme="c" data-split-theme="a" data-inset="false"></ul>
+            </div>
         </div>
     </body>
 </html>
