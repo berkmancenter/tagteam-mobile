@@ -26,12 +26,14 @@ $.extend({
     
     getItems:function() {
 	$.getJSON('testitems.json', {}, function(json){             
-	    for (var key in json.hubs) {
-		    var val = json.hubs[key];
-		var output = '<li>'+val.title+'</li>';
-		$("#items").append(output);  
+	    for (var key in json.feed_items) {
+		var val = json.feed_items[key];
+		var output = '<li><a href="#" class="ui-link-inherit">' +
+		'<h3 class="ui-li-heading">'+val.title+'</h3><p class="ui-li-desc">by ' +             
+		val.authors +'</p></a></li>';
+		$("#items_list").append(output);  
 	    }
-	    $('#items').listview('refresh');
+	    $('#items_list').listview('refresh');
 	});     
     },
     
