@@ -28,7 +28,7 @@ $.extend({
 	$.getJSON('testitems.json', {}, function(json){             
 	    for (var key in json.feed_items) {
 		var val = json.feed_items[key];
-		var output = '<li><a href="#" class="ui-link-inherit">' +
+		var output = '<li><a href="cItem.html" class="ui-link-inherit">' +
 		'<h3 class="ui-li-heading">'+val.title+'</h3><p class="ui-li-desc">by ' +             
 		val.authors +'</p></a></li>';
 		$("#items_list").append(output);  
