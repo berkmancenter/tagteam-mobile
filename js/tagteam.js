@@ -3,9 +3,9 @@ $.extend({
 	$.getJSON('testhubs.json', {}, function(json){
 	    for (var key in json.hubs) {
 		var val = json.hubs[key];
-                var output = '<li><a href="hub.html" id="'+key+'" class="ui-link-inherit">'
-                +'<h3 class="ui-li-heading">'+val.title+'</h3><p class="ui-li-desc">';
-                            
+		var output = '<li><a href="hub.html"  data-transition="slidedown" data-rel="dialog"  '+
+		    'id="hub-'+key+'" class="ui-link-inherit">' +
+		    '<h3 class="ui-li-heading">'+val.title+'</h3><p class="ui-li-desc">';               
 		if (val.description != null) {
 		    output += val.description;
 		}
