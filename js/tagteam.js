@@ -16,7 +16,7 @@ $.extend({
 	}); 
 	
 	$("a[id^='hub']").live('tap',function(event) {
-	    $.saveInLocalStorage('currentHubId', $(this).attr('id').split('-')[1])
+	    $.saveInLocalStorage('currentHubId', $(this).attr('id').split('-')[1]);
 	});
     },
     
