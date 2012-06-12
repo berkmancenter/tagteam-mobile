@@ -2,4 +2,14 @@ body {
 	margin: 0;
         padding: 0;
 }
-/* ui-icon ui-icon-NAME ui-icon-shadow */
+
+.ui-icon-tag-items      {background-image: url("./icons/item.png");}
+.ui-icon-tag-about      {background-image: url("app-icon-email.png");}
+.ui-icon-tag-inputs     {background-image: url("./icons/input.png");}
+.ui-icon-tag-bookmarks  {background-image: url("app-icon-email.png");}
+.ui-icon-tag-remixes    {background-image: url("app-icon-email.png");}
+.ui-icon-tag-tags       {background-image: url("app-icon-email.png");}
+.ui-icon-tag-filters    {background-image: url("app-icon-email.png");}
+.ui-icon-tag-updates    {background-image: url("app-icon-email.png");}
+.ui-icon-tag-search     {background-image: url("app-icon-email.png");}
+.ui-icon-tag-contact    {background-image: url("app-icon-email.png");}
