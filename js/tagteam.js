@@ -1,43 +1,46 @@
 $.extend({
     getHubs:function() {
         $.getJSON('testhubs.json', {}, function(json){
-            for (var key in json.hubs) {
-                var val = json.hubs[key];
-                var output = '<li><a href="hub.html"  data-transition="slidedown" data-rel="dialog"  '+
-                'id="hub-'+key+'" class="ui-link-inherit">' +
-                '<h3 class="ui-li-heading">'+val.title+'</h3><p class="ui-li-desc">';               
+            $.each(json.hubs, function (key, val) {
+                var desc = '';
                 if (val.description != null) {
-                    output += val.description;
+                    desc = val.description;
                 }
-                output += '</p></a></li>';
-                $("#hubs").append(output);  
-            }
+                $("#hubs").append(
+                    '<li><a href="hub.html" data-transition="slidedown" data-rel="dialog" '+
+                    'id="hub-'+key+'" class="ui-link-inherit">'+'<h3 class="ui-li-heading">'+
+                    val.title+'</h3><p class="ui-li-desc">'+desc+'</p></a></li>'); 
+            });
             $('#hubs').listview('refresh');
-        }); 
+        }).error(function() { alert("json error");});
 	
-        $("a[id^='hub']").live('tap',function(event) {
+        $("a[id^='hub']").live('tap',function(e) {
             $.saveInLocalStorage('currentHubId', $(this).attr('id').split('-')[1]);
         });
     },
     
     getItems:function() {
-        $.getJSON('testitems.json', {}, function(json){   
-            $("#items").listview()
-            /*@TODO:  use foreach*/
-            for (var key in json.feed_items) {
-                var val = json.feed_items[key];
-                var output = '<li><a id="item-'+key+'" href="./cItem.html" class="ui-link-inherit">'+
-                '<h3 class="ui-li-heading">'+val.title+'</h3><p class="ui-li-desc">by '            
-                + val.authors+'</p></a></li>';
-                $("#items").append(output);  
-            }
-            $('#items').listview('refresh');      
-            $("a[id^='item']").live('tap',function(event) {
-                $.saveInLocalStorage('currentItem', json.feed_items[$(this).attr('id').split('-')[1]]);
-               // Testing save
-               // alert('getting item..');
-               // alert(localStorage.getItem('currentItem').id);
+        $.getJSON('testitems.json', {}, function(json){  
+            $.each(json.feed_items, function (key, val) {
+                $("#items").append(
+                    '<li><a id="item-'+key+
+                    '" href="./cItem.html" class="ui-link-inherit">'+
+                    '<h3 class="ui-li-heading">'+val.title+'</h3><p class="ui-li-desc">by '+           
+                    val.authors+'</p></a></li>');          
             });
+            $('#items').listview('refresh');      
+            $("a[id^='item']").live('tap',function(e) {
+                $.saveInLocalStorage('currentItem', json.feed_items[$(this).attr('id').split('-')[1]]);
+            // alert(localStorage.getItem('currentItem').id);
+            });
+        });
+    },
+    
+    getInputs:function() {
+        $.getJSON('hub_feeds.json', {}, function(json){   
+            $("#items").listview();
+           
+            $('#items').listview('refresh');      
         });
     },
     

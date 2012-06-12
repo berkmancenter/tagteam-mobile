@@ -1,0 +1,478 @@
+{
+    "hub_feeds":[{
+        "id":905,
+        "title":"Petr Chovanec's blog",
+        "description":"Just another Weblogs at Harvard Law School site",
+        "link":"http://blogs.law.harvard.edu/chovanec",
+        "hub":{
+            "id":2,
+            "title":"Blogs.law test aggregation Hub",
+            "description":"This aggregates all live, public blogs at <a href=\"http://blogs.law.harvard.edu/\" title=\"\">blogs.law.harvard.edu</a>.",
+            "created_at":"2012-03-08T10:59:16-05:00",
+            "updated_at":"2012-05-29T10:27:16-04:00"
+        },
+        "feed":{
+            "authors":"",
+            "id":923,
+            "title":"Petr Chovanec's blog",
+            "feed_url":"http://blogs.law.harvard.edu/chovanec/feed/",
+            "bookmarking_feed":false
+        }
+    },{
+    "id":904,
+    "title":"Ernst Mayr Library",
+    "description":"Library blog",
+    "link":"http://blogs.law.harvard.edu/ernstmayrlibrary",
+    "hub":{
+        "id":2,
+        "title":"Blogs.law test aggregation Hub",
+        "description":"This aggregates all live, public blogs at <a href=\"http://blogs.law.harvard.edu/\" title=\"\">blogs.law.harvard.edu</a>.",
+        "created_at":"2012-03-08T10:59:16-05:00",
+        "updated_at":"2012-05-29T10:27:16-04:00"
+    },
+    "feed":{
+        "authors":"",
+        "id":922,
+        "title":"Ernst Mayr Library",
+        "feed_url":"http://blogs.law.harvard.edu/ernstmayrlibrary/feed/",
+        "bookmarking_feed":false
+    }
+},{
+    "id":899,
+    "title":"a rugs life",
+    "description":"Woah! There's a bug in that rug",
+    "link":"http://blogs.law.harvard.edu/arugslife",
+    "hub":{
+        "id":2,
+        "title":"Blogs.law test aggregation Hub",
+        "description":"This aggregates all live, public blogs at <a href=\"http://blogs.law.harvard.edu/\" title=\"\">blogs.law.harvard.edu</a>.",
+        "created_at":"2012-03-08T10:59:16-05:00",
+        "updated_at":"2012-05-29T10:27:16-04:00"
+    },
+    "feed":{
+        "authors":"",
+        "id":917,
+        "title":"a rugs life",
+        "feed_url":"http://blogs.law.harvard.edu/arugslife/feed/",
+        "bookmarking_feed":false
+    }
+},{
+    "id":898,
+    "title":"Dan's Weblog",
+    "description":"gentleman, n. - a man who knows how to blog, but doesn't",
+    "link":"http://blogs.law.harvard.edu/heydan",
+    "hub":{
+        "id":2,
+        "title":"Blogs.law test aggregation Hub",
+        "description":"This aggregates all live, public blogs at <a href=\"http://blogs.law.harvard.edu/\" title=\"\">blogs.law.harvard.edu</a>.",
+        "created_at":"2012-03-08T10:59:16-05:00",
+        "updated_at":"2012-05-29T10:27:16-04:00"
+    },
+    "feed":{
+        "authors":"",
+        "id":916,
+        "title":"Dan's Weblog",
+        "feed_url":"http://blogs.law.harvard.edu/heydan/feed/",
+        "bookmarking_feed":false
+    }
+},{
+    "id":897,
+    "title":"video vidi visum : virtual",
+    "description":"learning, teaching, and virtual technologies",
+    "link":"http://blogs.law.harvard.edu/vvvv",
+    "hub":{
+        "id":2,
+        "title":"Blogs.law test aggregation Hub",
+        "description":"This aggregates all live, public blogs at <a href=\"http://blogs.law.harvard.edu/\" title=\"\">blogs.law.harvard.edu</a>.",
+        "created_at":"2012-03-08T10:59:16-05:00",
+        "updated_at":"2012-05-29T10:27:16-04:00"
+    },
+    "feed":{
+        "authors":"",
+        "id":915,
+        "title":"video vidi visum : virtual",
+        "feed_url":"http://blogs.law.harvard.edu/vvvv/feed/",
+        "bookmarking_feed":false
+    }
+},{
+    "id":896,
+    "title":"Al Hoang",
+    "description":"Just another weblog",
+    "link":"http://blogs.law.harvard.edu/hoanga",
+    "hub":{
+        "id":2,
+        "title":"Blogs.law test aggregation Hub",
+        "description":"This aggregates all live, public blogs at <a href=\"http://blogs.law.harvard.edu/\" title=\"\">blogs.law.harvard.edu</a>.",
+        "created_at":"2012-03-08T10:59:16-05:00",
+        "updated_at":"2012-05-29T10:27:16-04:00"
+    },
+    "feed":{
+        "authors":"",
+        "id":914,
+        "title":"Al Hoang",
+        "feed_url":"http://blogs.law.harvard.edu/hoanga/feed/",
+        "bookmarking_feed":false
+    }
+},{
+    "id":895,
+    "title":"New American Publius",
+    "description":"Policy for a New Era",
+    "link":"http://blogs.law.harvard.edu/rhetoric",
+    "hub":{
+        "id":2,
+        "title":"Blogs.law test aggregation Hub",
+        "description":"This aggregates all live, public blogs at <a href=\"http://blogs.law.harvard.edu/\" title=\"\">blogs.law.harvard.edu</a>.",
+        "created_at":"2012-03-08T10:59:16-05:00",
+        "updated_at":"2012-05-29T10:27:16-04:00"
+    },
+    "feed":{
+        "authors":"",
+        "id":913,
+        "title":"New American Publius",
+        "feed_url":"http://blogs.law.harvard.edu/rhetoric/feed/",
+        "bookmarking_feed":false
+    }
+},{
+    "id":894,
+    "title":"Hanwen Benjamin Zhang",
+    "description":"Road to Harvard; Life at Harvard",
+    "link":"http://blogs.law.harvard.edu/zhang",
+    "hub":{
+        "id":2,
+        "title":"Blogs.law test aggregation Hub",
+        "description":"This aggregates all live, public blogs at <a href=\"http://blogs.law.harvard.edu/\" title=\"\">blogs.law.harvard.edu</a>.",
+        "created_at":"2012-03-08T10:59:16-05:00",
+        "updated_at":"2012-05-29T10:27:16-04:00"
+    },
+    "feed":{
+        "authors":"",
+        "id":912,
+        "title":"Hanwen Benjamin Zhang",
+        "feed_url":"http://blogs.law.harvard.edu/zhang/feed/",
+        "bookmarking_feed":false
+    }
+},{
+    "id":893,
+    "title":"Thursday Meetings at Berkman Blog",
+    "description":"A weekly meeting for people interested in weblogs, newbie to guru.",
+    "link":"http://blogs.law.harvard.edu/bloggroup",
+    "hub":{
+        "id":2,
+        "title":"Blogs.law test aggregation Hub",
+        "description":"This aggregates all live, public blogs at <a href=\"http://blogs.law.harvard.edu/\" title=\"\">blogs.law.harvard.edu</a>.",
+        "created_at":"2012-03-08T10:59:16-05:00",
+        "updated_at":"2012-05-29T10:27:16-04:00"
+    },
+    "feed":{
+        "authors":"",
+        "id":911,
+        "title":"Thursday Meetings at Berkman Blog",
+        "feed_url":"http://blogs.law.harvard.edu/bloggroup/feed/",
+        "bookmarking_feed":false
+    }
+},{
+    "id":892,
+    "title":"Media Re:public",
+    "description":"encouraging collaborative, practical research and analysis of the new media (r)evolution",
+    "link":"http://blogs.law.harvard.edu/mediarepublic",
+    "hub":{
+        "id":2,
+        "title":"Blogs.law test aggregation Hub",
+        "description":"This aggregates all live, public blogs at <a href=\"http://blogs.law.harvard.edu/\" title=\"\">blogs.law.harvard.edu</a>.",
+        "created_at":"2012-03-08T10:59:16-05:00",
+        "updated_at":"2012-05-29T10:27:16-04:00"
+    },
+    "feed":{
+        "authors":"",
+        "id":910,
+        "title":"Media Re:public",
+        "feed_url":"http://blogs.law.harvard.edu/mediarepublic/feed/",
+        "bookmarking_feed":false
+    }
+},{
+    "id":891,
+    "title":"Information Behaving Badly",
+    "description":"When bad judgment meets Web 2.0",
+    "link":"http://blogs.law.harvard.edu/rudy",
+    "hub":{
+        "id":2,
+        "title":"Blogs.law test aggregation Hub",
+        "description":"This aggregates all live, public blogs at <a href=\"http://blogs.law.harvard.edu/\" title=\"\">blogs.law.harvard.edu</a>.",
+        "created_at":"2012-03-08T10:59:16-05:00",
+        "updated_at":"2012-05-29T10:27:16-04:00"
+    },
+    "feed":{
+        "authors":"",
+        "id":909,
+        "title":"Information Behaving Badly",
+        "feed_url":"http://blogs.law.harvard.edu/rudy/feed/",
+        "bookmarking_feed":false
+    }
+},{
+    "id":890,
+    "title":"No Flying Cars - Technology wins and losses",
+    "description":"Thoughts from technologist and nerd Maggie McFee",
+    "link":"http://blogs.law.harvard.edu/mmcfee",
+    "hub":{
+        "id":2,
+        "title":"Blogs.law test aggregation Hub",
+        "description":"This aggregates all live, public blogs at <a href=\"http://blogs.law.harvard.edu/\" title=\"\">blogs.law.harvard.edu</a>.",
+        "created_at":"2012-03-08T10:59:16-05:00",
+        "updated_at":"2012-05-29T10:27:16-04:00"
+    },
+    "feed":{
+        "authors":"",
+        "id":908,
+        "title":"No Flying Cars - Technology wins and losses",
+        "feed_url":"http://blogs.law.harvard.edu/mmcfee/feed/",
+        "bookmarking_feed":false
+    }
+},{
+    "id":889,
+    "title":"Direction Home...",
+    "description":"...beyond fear and shame. No secrets to conceal.",
+    "link":"http://blogs.law.harvard.edu/directionhome",
+    "hub":{
+        "id":2,
+        "title":"Blogs.law test aggregation Hub",
+        "description":"This aggregates all live, public blogs at <a href=\"http://blogs.law.harvard.edu/\" title=\"\">blogs.law.harvard.edu</a>.",
+        "created_at":"2012-03-08T10:59:16-05:00",
+        "updated_at":"2012-05-29T10:27:16-04:00"
+    },
+    "feed":{
+        "authors":"",
+        "id":907,
+        "title":"Direction Home...",
+        "feed_url":"http://blogs.law.harvard.edu/directionhome/feed/",
+        "bookmarking_feed":false
+    }
+},{
+    "id":888,
+    "title":"Boston's Boiling Point",
+    "description":"Harvard BLSA's Social Justice Committee",
+    "link":"http://blogs.law.harvard.edu/hblsasj",
+    "hub":{
+        "id":2,
+        "title":"Blogs.law test aggregation Hub",
+        "description":"This aggregates all live, public blogs at <a href=\"http://blogs.law.harvard.edu/\" title=\"\">blogs.law.harvard.edu</a>.",
+        "created_at":"2012-03-08T10:59:16-05:00",
+        "updated_at":"2012-05-29T10:27:16-04:00"
+    },
+    "feed":{
+        "authors":"",
+        "id":906,
+        "title":"Boston's Boiling Point",
+        "feed_url":"http://blogs.law.harvard.edu/hblsasj/feed/",
+        "bookmarking_feed":false
+    }
+},{
+    "id":887,
+    "title":"Brian @ HLS",
+    "description":"Please consider voting for me for HLS Student Government President on March 18/19.",
+    "link":"http://blogs.law.harvard.edu/baune",
+    "hub":{
+        "id":2,
+        "title":"Blogs.law test aggregation Hub",
+        "description":"This aggregates all live, public blogs at <a href=\"http://blogs.law.harvard.edu/\" title=\"\">blogs.law.harvard.edu</a>.",
+        "created_at":"2012-03-08T10:59:16-05:00",
+        "updated_at":"2012-05-29T10:27:16-04:00"
+    },
+    "feed":{
+        "authors":"",
+        "id":905,
+        "title":"Brian @ HLS",
+        "feed_url":"http://blogs.law.harvard.edu/baune/feed/",
+        "bookmarking_feed":false
+    }
+},{
+    "id":886,
+    "title":"Conversations on Research, Teaching & Learning",
+    "description":"",
+    "link":"http://blogs.law.harvard.edu/conversations",
+    "hub":{
+        "id":2,
+        "title":"Blogs.law test aggregation Hub",
+        "description":"This aggregates all live, public blogs at <a href=\"http://blogs.law.harvard.edu/\" title=\"\">blogs.law.harvard.edu</a>.",
+        "created_at":"2012-03-08T10:59:16-05:00",
+        "updated_at":"2012-05-29T10:27:16-04:00"
+    },
+    "feed":{
+        "authors":"",
+        "id":904,
+        "title":"Conversations on Research, Teaching & Learning",
+        "feed_url":"http://blogs.law.harvard.edu/conversations/feed/",
+        "bookmarking_feed":false
+    }
+},{
+    "id":885,
+    "title":"Harvard BlackLetter Law Journal",
+    "description":"Just another Weblogs at Harvard Law School weblog",
+    "link":"http://blogs.law.harvard.edu/hlsblj",
+    "hub":{
+        "id":2,
+        "title":"Blogs.law test aggregation Hub",
+        "description":"This aggregates all live, public blogs at <a href=\"http://blogs.law.harvard.edu/\" title=\"\">blogs.law.harvard.edu</a>.",
+        "created_at":"2012-03-08T10:59:16-05:00",
+        "updated_at":"2012-05-29T10:27:16-04:00"
+    },
+    "feed":{
+        "authors":"",
+        "id":903,
+        "title":"Harvard BlackLetter Law Journal",
+        "feed_url":"http://blogs.law.harvard.edu/hlsblj/feed/",
+        "bookmarking_feed":false
+    }
+},{
+    "id":884,
+    "title":"Harvard Weblog Digest",
+    "description":"Just another Weblogs at Harvard Law School weblog",
+    "link":"http://blogs.law.harvard.edu/digest",
+    "hub":{
+        "id":2,
+        "title":"Blogs.law test aggregation Hub",
+        "description":"This aggregates all live, public blogs at <a href=\"http://blogs.law.harvard.edu/\" title=\"\">blogs.law.harvard.edu</a>.",
+        "created_at":"2012-03-08T10:59:16-05:00",
+        "updated_at":"2012-05-29T10:27:16-04:00"
+    },
+    "feed":{
+        "authors":"",
+        "id":887,
+        "title":"Harvard Weblog Digest",
+        "feed_url":"http://blogs.law.harvard.edu/digest/feed/",
+        "bookmarking_feed":false
+    }
+},{
+    "id":883,
+    "title":"A Copyfighter's Musings",
+    "description":"by Derek Slater",
+    "link":"http://blogs.law.harvard.edu/cmusings",
+    "hub":{
+        "id":2,
+        "title":"Blogs.law test aggregation Hub",
+        "description":"This aggregates all live, public blogs at <a href=\"http://blogs.law.harvard.edu/\" title=\"\">blogs.law.harvard.edu</a>.",
+        "created_at":"2012-03-08T10:59:16-05:00",
+        "updated_at":"2012-05-29T10:27:16-04:00"
+    },
+    "feed":{
+        "authors":"",
+        "id":886,
+        "title":"A Copyfighter's Musings",
+        "feed_url":"http://blogs.law.harvard.edu/cmusings/feed/",
+        "bookmarking_feed":false
+    }
+},{
+    "id":882,
+    "title":"Adventures in Gastronomy",
+    "description":"Snarl's Humble Webpage",
+    "link":"http://blogs.law.harvard.edu/snarl",
+    "hub":{
+        "id":2,
+        "title":"Blogs.law test aggregation Hub",
+        "description":"This aggregates all live, public blogs at <a href=\"http://blogs.law.harvard.edu/\" title=\"\">blogs.law.harvard.edu</a>.",
+        "created_at":"2012-03-08T10:59:16-05:00",
+        "updated_at":"2012-05-29T10:27:16-04:00"
+    },
+    "feed":{
+        "authors":"",
+        "id":885,
+        "title":"Adventures in Gastronomy",
+        "feed_url":"http://blogs.law.harvard.edu/snarl/feed/",
+        "bookmarking_feed":false
+    }
+},{
+    "id":881,
+    "title":"Weblogs at Harvard Test Blog",
+    "description":"Just another Weblogs at Harvard Law School weblog",
+    "link":"http://blogs.law.harvard.edu/test",
+    "hub":{
+        "id":2,
+        "title":"Blogs.law test aggregation Hub",
+        "description":"This aggregates all live, public blogs at <a href=\"http://blogs.law.harvard.edu/\" title=\"\">blogs.law.harvard.edu</a>.",
+        "created_at":"2012-03-08T10:59:16-05:00",
+        "updated_at":"2012-05-29T10:27:16-04:00"
+    },
+    "feed":{
+        "authors":"",
+        "id":884,
+        "title":"Weblogs at Harvard Test Blog",
+        "feed_url":"http://blogs.law.harvard.edu/test/feed/",
+        "bookmarking_feed":false
+    }
+},{
+    "id":880,
+    "title":"...My heart's in Accra",
+    "description":"EthanZ's musings on Africa, media and international development",
+    "link":"http://www.ethanzuckerman.com/blog",
+    "hub":{
+        "id":2,
+        "title":"Blogs.law test aggregation Hub",
+        "description":"This aggregates all live, public blogs at <a href=\"http://blogs.law.harvard.edu/\" title=\"\">blogs.law.harvard.edu</a>.",
+        "created_at":"2012-03-08T10:59:16-05:00",
+        "updated_at":"2012-05-29T10:27:16-04:00"
+    },
+    "feed":{
+        "authors":"",
+        "id":883,
+        "title":"...My heart's in Accra",
+        "feed_url":"http://blogs.law.harvard.edu/ethan/feed/",
+        "bookmarking_feed":false
+    }
+},{
+    "id":879,
+    "title":"Squashing Limits",
+    "description":"Just another Weblogs at Harvard Law School weblog",
+    "link":"http://blogs.law.harvard.edu/baj",
+    "hub":{
+        "id":2,
+        "title":"Blogs.law test aggregation Hub",
+        "description":"This aggregates all live, public blogs at <a href=\"http://blogs.law.harvard.edu/\" title=\"\">blogs.law.harvard.edu</a>.",
+        "created_at":"2012-03-08T10:59:16-05:00",
+        "updated_at":"2012-05-29T10:27:16-04:00"
+    },
+    "feed":{
+        "authors":"",
+        "id":882,
+        "title":"Squashing Limits",
+        "feed_url":"http://blogs.law.harvard.edu/baj/feed/",
+        "bookmarking_feed":false
+    }
+},{
+    "id":878,
+    "title":"Info/Law",
+    "description":"Information, Law, and the Law of Information",
+    "link":"http://blogs.law.harvard.edu/infolaw",
+    "hub":{
+        "id":2,
+        "title":"Blogs.law test aggregation Hub",
+        "description":"This aggregates all live, public blogs at <a href=\"http://blogs.law.harvard.edu/\" title=\"\">blogs.law.harvard.edu</a>.",
+        "created_at":"2012-03-08T10:59:16-05:00",
+        "updated_at":"2012-05-29T10:27:16-04:00"
+    },
+    "feed":{
+        "authors":"",
+        "id":881,
+        "title":"Info/Law",
+        "feed_url":"http://blogs.law.harvard.edu/infolaw/feed/",
+        "bookmarking_feed":false
+    }
+},{
+    "id":877,
+    "title":"Q-Tips ^_^",
+    "description":"Welcome to my \"new\" ski lodge!",
+    "link":"http://blogs.law.harvard.edu/ding414",
+    "hub":{
+        "id":2,
+        "title":"Blogs.law test aggregation Hub",
+        "description":"This aggregates all live, public blogs at <a href=\"http://blogs.law.harvard.edu/\" title=\"\">blogs.law.harvard.edu</a>.",
+        "created_at":"2012-03-08T10:59:16-05:00",
+        "updated_at":"2012-05-29T10:27:16-04:00"
+    },
+    "feed":{
+        "authors":"",
+        "id":880,
+        "title":"Q-Tips ^_^",
+        "feed_url":"http://blogs.law.harvard.edu/ding414/feed/",
+        "bookmarking_feed":false
+    }
+}]
+}
