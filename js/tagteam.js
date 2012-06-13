@@ -38,9 +38,11 @@ $.extend({
     
     getInputs:function() {
         $.getJSON('hub_feeds.json', {}, function(json){   
-            $("#items").listview();
-           
-            $('#items').listview('refresh');      
+            $("#inputs").listview();
+            $.each(json.hub_feeds, function(key,val){
+                $('#inputs').append('<li><a href="acura.html"><img src="./css/icons/rss-01.png"></img>'+val.title+'</a></li>');
+            });
+            $('#inputs').listview('refresh');      
         });
     },
     
@@ -69,6 +71,9 @@ $(document).ready(function(){
                 break;
             case 'items_page':
                 $.getItems();
+                break;
+            case 'inputs_page':
+                $.getInputs();
                 break;
         }
     });
