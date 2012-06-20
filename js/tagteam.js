@@ -17,7 +17,7 @@ $.extend({
         });
 	
         $("a[id^='hub']").live('tap',function(e) {
-            $.saveInLocalStorage('currentHubId', $(this).attr('id').split('-')[1]);
+            $.setLocal('currentHubId', $(this).attr('id').split('-')[1]);
         });
     },
     
@@ -32,14 +32,13 @@ $.extend({
                             '" href="./cItem.html" class="ui-link-inherit">'+
                             '<h3 class="ui-li-heading">'+val.title+'</h3><p class="ui-li-desc">by '+           
                             val.authors+'</p></a></li>'); 
+                        $("#item-"+key).live('tap',function(e) {
+                            $.setLocal('currentItemId',key);
+                        });
                     }
                 }
             });
-            $('#items').listview('refresh');      
-            $("a[id^='item']").live('tap',function(e) {
-                $.saveInLocalStorage('currentItem', json.feed_items[$(this).attr('id').split('-')[1]]);
-            // alert(localStorage.getItem('currentItem').id); 
-            });
+            $('#items').listview('refresh');    
         });
     },
     
@@ -47,7 +46,7 @@ $.extend({
         $.getJSON('hub_feeds.json', {}, function(json){   
             $("#inputs").listview();
             $.each(json.hub_feeds, function(key,val){
-                if (val.hub.id == localStorage.getItem('currentHubId')) {
+                if (val.hub.id == $.getLocal('currentHubId')) {
                     $('#inputs').append('<li><a href="acura.html"><img src="./css/icons/rss-01.png"></img>'+val.title+'<p class="ui-li-desc">'+val.description+'</p></a></li>');
                 }
             });
@@ -55,9 +54,19 @@ $.extend({
         });
     },
     
-    saveInLocalStorage:function(key,data) {
+    getCurrentItem:function() {
+        $.getJSON('testitems.json', {}, function(json){ 
+            var cur = json.feed_items[$.getLocal('currentItemId')];
+            $('#title').append(cur.title);
+            $('#url').append(cur.url);
+            $('#published').append(cur.date_published.slice("T"));
+            $('#authors').append(cur.authors);
+        })
+    },
+    
+    setLocal:function(key,data) {
         if(typeof(localStorage) == 'undefined' ) {
-            alert('Your browser does not support localStorage()');
+            console.log('Your browser does not support localStorage()');
         }
         else {
             try {
@@ -65,16 +74,26 @@ $.extend({
             }
             catch (e) {
                 if (e == QUOTA_EXCEEDED_ERR) {
-                    alert('No place in localstorage');
+                    console.log('No place in localstorage');
                 }
             }
         }
     },
     
+    getLocal:function(key) {
+        try {
+            return localStorage.getItem(key)
+        } 
+        catch (e) {
+            console.log('Wrong key');
+        }
+    },
+    
     debugInfo:function() {
         console.log('page: ' + $('[data-role=page]').attr('id'));
-        console.log('hub id: ' +  localStorage.getItem('currentHubId'));
+        console.log('hub id: ' +  $.getLocal('currentHubId'));
         console.log('---');
+        console.log('cur item:' + $.getLocal('currentItemId'));
     }
 });
 
@@ -90,6 +109,9 @@ $(document).ready(function(){
             case 'inputs_page':
                 $.getInputs();
                 break;
+            case 'current_item':
+                $.getCurrentItem();
+            
         }
         $.debugInfo();
     });
