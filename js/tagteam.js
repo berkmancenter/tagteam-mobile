@@ -24,11 +24,16 @@ $.extend({
     getItems:function() {
         $.getJSON('testitems.json', {}, function(json){  
             $.each(json.feed_items, function (key, val) {
-                $("#items").append(
-                    '<li><a id="item-'+key+
-                    '" href="./cItem.html" class="ui-link-inherit">'+
-                    '<h3 class="ui-li-heading">'+val.title+'</h3><p class="ui-li-desc">by '+           
-                    val.authors+'</p></a></li>');          
+                var numbers = val.hub_ids.slice(',');
+                for (var i=0; i<numbers.length; i++) {
+                    if(numbers[i]==localStorage.getItem('currentHubId')) {
+                        $("#items").append(
+                            '<li><a id="item-'+key+
+                            '" href="./cItem.html" class="ui-link-inherit">'+
+                            '<h3 class="ui-li-heading">'+val.title+'</h3><p class="ui-li-desc">by '+           
+                            val.authors+'</p></a></li>'); 
+                    }
+                }
             });
             $('#items').listview('refresh');      
             $("a[id^='item']").live('tap',function(e) {
