@@ -50,17 +50,25 @@ $.extend({
                     $('#inputs').append('<li><a href="acura.html"><img src="./css/icons/rss-01.png"></img>'+val.title+'<p class="ui-li-desc">'+val.description+'</p></a></li>');
                 }
             });
-            $('#inputs').listview('refresh');      
+            $('#inputs').listview('refresh');     
         });
     },
     
     getCurrentItem:function() {
         $.getJSON('testitems.json', {}, function(json){ 
             var cur = json.feed_items[$.getLocal('currentItemId')];
-            $('#title').append(cur.title);
-            $('#url').append(cur.url);
-            $('#published').append(cur.date_published.slice("T"));
-            $('#authors').append(cur.authors);
+            $('#title').html(cur.title);
+            $('#url').html(cur.url);
+            $('#published').html(cur.date_published.slice("T"));
+            $('#authors').html(cur.authors);
+            var tags = cur.tags.tags.slice(',');
+            $.each(tags, function(key,val){
+                $('#tags').append(val);
+                if (key == tags.count-1) {
+                $('#tags').append("; ");
+                }
+            });
+            
         })
     },
     
