@@ -44,7 +44,7 @@ $.extend({
     
     getInputs:function() {
         $.getJSON('hub_feeds.json', {}, function(json){   
-            $("#inputs").listview();
+            $("#inputs").empty();
             $.each(json.hub_feeds, function(key,val){
                 if (val.hub.id == $.getLocal('currentHubId')) {
                     $('#inputs').append('<li><a href="acura.html"><img src="./css/icons/rss-01.png"></img>'+val.title+'<p class="ui-li-desc">'+val.description+'</p></a></li>');
@@ -57,18 +57,18 @@ $.extend({
     getCurrentItem:function() {
         $.getJSON('testitems.json', {}, function(json){ 
             var cur = json.feed_items[$.getLocal('currentItemId')];
+            var time = cur.date_published.slice(0,10);
             $('#title').html(cur.title);
-            $('#url').html(cur.url);
-            $('#published').html(cur.date_published.slice("T"));
+            $('#published').html(time);
+            $('#updated').html(cur.last_updated)
             $('#authors').html(cur.authors);
+            $('#url').attr('href',cur.url); 
             var tags = cur.tags.tags.slice(',');
+            $('#tags').empty();
             $.each(tags, function(key,val){
-                $('#tags').append(val);
-                if (key == tags.count-1) {
-                $('#tags').append("; ");
-                }
+                $('#tags').append('<li><a href="index.html">'+val+'</a></li>');
             });
-            
+            $('#tags').listview('refresh'); 
         })
     },
     
