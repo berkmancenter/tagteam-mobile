@@ -11,25 +11,26 @@
         <link rel="stylesheet" type="text/css" href="./css/jquery.mobile.theme-1.1.0.css"/>
         <link rel="stylesheet" type="text/css" href="./css/style.css"/>
         <script type="text/javascript" src="./js/jquery.js"></script>
-	<script type="text/javascript" src="./js/tagteam.js"></script>
+        <script type="text/javascript" src="./js/tagteam.js"></script>
         <script type="text/javascript" src="./js/jquery.mobile-1.1.0.min.js"></script>
     </head>
     <body>
-	<div data-role="page" id="items_page">
+        <div data-role="page" id="tags_page">
             <div data-role="header" data-position="fixed">
-		<h1>Items</h1>
-		<a href="#" data-icon="gear" data-iconpos="notext" data-mini="true" data-inline="true" data-corners="true" data-shadow="false" data-iconshadow="false" data-wrapperels="span" class="ui-btn-left">options</a>
-		<a href="#" data-role="button" data-icon="search" data-iconpos="notext" data-mini="true" data-inline="true" data-corners="true" data-shadow="false" data-iconshadow="false" data-wrapperels="span" class="ui-btn-right">search</a>
-		<div data-role="navbar">
-		    <ul>
-			<li><a href="index.html">Back</a></li>
-			<li><a href="hub.html" data-transition="slidedown" data-rel="dialog">Menu</a></li>
-			<li><a href="#">Next</a></li>
-		    </ul>
-		</div>
-	    </div>
-            <div id="content" data-role="content"  data-theme="a">
-		<ul id="items" data-role="listview" data-inset="false"></ul>
+                <h1>Tags</h1>
+                <a href="#" data-icon="gear" data-iconpos="notext" data-mini="true" data-inline="true" data-corners="true" data-shadow="false" data-iconshadow="false" data-wrapperels="span" class="ui-btn-left">options</a>
+                <a href="#" data-role="button" data-icon="search" data-iconpos="notext" data-mini="true" data-inline="true" data-corners="true" data-shadow="false" data-iconshadow="false" data-wrapperels="span" class="ui-btn-right">search</a>
+                <div data-role="navbar">
+                    <ul>
+                        <li><a href="hub.html" data-transition="slidedown" data-rel="dialog">Menu</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div id="content" data-reole="content" data-theme="a">
+                <p>
+                <ul id="tags" data-role="listview"  data-inset="true" data-filter="true">
+                </ul>
+                </p>
             </div>
         </div>
 

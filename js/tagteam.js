@@ -1,3 +1,10 @@
+/*
+ *  tags-items
+ *  inputs-items
+ *  inputs (page)
+ *
+ */
+
 $.extend({
     root:function() {
         return 'http://tagteam.harvard.edu';
@@ -81,8 +88,8 @@ $.extend({
             var item = json.feed_items[$.getLocal('cItemId')];
             $('#itemid').html('Item '+item.id);
             $('#title').html(item.title);
-            $('#published').html(item.date_published.replace('T',' '));
-            $('#updated').html(item.last_updated.replace('T',' '))
+            $('#published').html(item.date_published.replace('T',' ').slice(0,item.date_published.length-6));
+            $('#updated').html(item.last_updated.replace('T',' ').slice(0,item.last_updated.length-6))
             $('#authors').html(item.authors);
             $('#url').attr('href',item.url); 
             var tags = item.tags.tags.slice(',');
