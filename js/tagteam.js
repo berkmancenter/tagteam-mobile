@@ -5,7 +5,11 @@
  *
  */
 
+
+
 $.extend({
+    item_range : [0,20],
+    
     root:function() {
         return 'http://tagteam.harvard.edu';
     },
@@ -15,7 +19,8 @@ $.extend({
             'hub':  $.root()+'/hubs.json?callback=?',
             'items':$.root()+'/hubs/'+$.getLocal('cHubId')+'/items.json?callback=?',
             'inputs':$.root()+'/hubs/'+$.getLocal('cHubId')+'/hub_feeds.json?callback=?',
-            'tags':$.root()+'/hubs/'+$.getLocal('cHubId')+'/tags.json?callback=?'
+            'tags':$.root()+'/hubs/'+$.getLocal('cHubId')+'/tags.json?callback=?',
+            'tags_items':$.root()+'/hubs'+$.getLocal('cHubId')+'tag/json/'+args+'?callback=?'
         }
     },
     
@@ -47,17 +52,19 @@ $.extend({
             $.each(json.feed_items, function (key, item) {
                 switch (type) {
                     case 'normal':
-                        var numbers = item.hub_ids.slice(',');
-                        for (var i=0; i<numbers.length; i++) {
-                            if(numbers[i]==hub) {
-                                $("#items").append(
-                                    '<li><a id="item-'+item.id+
-                                    '" href="./cItem.html" class="ui-link-inherit">'+
-                                    '<h3 class="ui-li-heading">'+item.title+'</h3><p class="ui-li-desc">by '+           
-                                    item.authors+'</p></a></li>'); 
-                                $("#item-"+item.id).live('tap',function(e) {
-                                    $.setLocal('cItemId',key);
-                                });
+                        if ((key >= $.item_range[0]) && (key <= $.item_range[1])) {
+                            var numbers = item.hub_ids.slice(',');
+                            for (var i=0; i<numbers.length; i++) {
+                                if(numbers[i]==hub) {
+                                    $("#items").append(
+                                        '<li><a id="item-'+item.id+
+                                        '" href="./cItem.html" class="ui-link-inherit">'+
+                                        '<h3 class="ui-li-heading">'+item.title+'</h3><p class="ui-li-desc">by '+           
+                                        item.authors+'</p></a></li>'); 
+                                    $("#item-"+item.id).live('tap',function(e) {
+                                        $.setLocal('cItemId',key);
+                                    });
+                                }
                             }
                         }
                         break;
@@ -87,7 +94,11 @@ $.extend({
         $.getJSON(link, {}, function(json){   
             $("#tags").empty();
             $.each(json.tags, function(key,val){
-                $('#tags').append('<li id="tag-'+val.id+'"><a href="#.html">'+val.name+'</a></li>');
+                $('#tags').append('<li id="tag-'+val.id+'"><a href="items.html">'+val.name+'</a></li>');
+                $('#tag-'+val.id).live('tap',function(e) {
+                    $.setLocal('tagItems',true);
+                    $.setLocal('tagName',val.name);
+                });
             });
             $('#tags').listview('refresh');     
         });  
@@ -152,7 +163,12 @@ $(document).ready(function(){
                 $.getHubs($.links().hub);
                 break;
             case 'items_page':
-                $.getItems("normal",$.links().items);
+                if ($.getLocal('tagItems') == true) {
+                    $.getItems("normal",$.links($.getLocal('tagName')).tags_item);
+                    $.setLocal('tagItems') = false;
+                } else {
+                    $.getItems("normal",$.links().items);
+                }
                 break;
             case 'inputs_page':
                 $.getInputs($.links().inputs);
