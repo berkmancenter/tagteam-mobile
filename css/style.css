@@ -2,6 +2,7 @@ body {
     margin: 0;
     padding: 0;
 }
+
 #menu_nav .ui-btn .ui-icon { width: 30px!important; 
                              background-color: transparent;
                              background-position: center;

@@ -20,7 +20,9 @@ $.extend({
     },
     
     getHubs:function(link) {
-        $.getJSON(link, {}, function(json){ 
+        
+        $.getJSON(link, {}, function(json){
+            $('#hubs').empty();
             $.each(json.hubs, function (key, val) {
                 var desc = '';
                 if (val.description != null) {
@@ -39,23 +41,31 @@ $.extend({
         });
     },
     
-    getItems:function(link) {
+    getItems:function(type,link) {
         var hub = $.getLocal('cHubId');
         $.getJSON(link, {}, function(json){  
             $.each(json.feed_items, function (key, item) {
-                var numbers = item.hub_ids.slice(',');
-                for (var i=0; i<numbers.length; i++) {
-                    if(numbers[i]==hub) {
-                        $("#items").append(
-                            '<li><a id="item-'+item.id+
-                            '" href="./cItem.html" class="ui-link-inherit">'+
-                            '<h3 class="ui-li-heading">'+item.title+'</h3><p class="ui-li-desc">by '+           
-                            item.authors+'</p></a></li>'); 
-                        $("#item-"+key).live('tap',function(e) {
-                            $.setLocal('cItemId',key);
-                        });
-                    }
-                }
+                switch (type) {
+                    case 'normal':
+                        var numbers = item.hub_ids.slice(',');
+                        for (var i=0; i<numbers.length; i++) {
+                            if(numbers[i]==hub) {
+                                $("#items").append(
+                                    '<li><a id="item-'+item.id+
+                                    '" href="./cItem.html" class="ui-link-inherit">'+
+                                    '<h3 class="ui-li-heading">'+item.title+'</h3><p class="ui-li-desc">by '+           
+                                    item.authors+'</p></a></li>'); 
+                                $("#item-"+item.id).live('tap',function(e) {
+                                    $.setLocal('cItemId',key);
+                                });
+                            }
+                        }
+                        break;
+                    case 'tags-items':
+                        break;
+                    case 'inputs-items':
+                        break;
+                }  
             });
             $('#items').listview('refresh');    
         });
@@ -77,7 +87,7 @@ $.extend({
         $.getJSON(link, {}, function(json){   
             $("#tags").empty();
             $.each(json.tags, function(key,val){
-                    $('#tags').append('<li id="tag-'+val.id+'"><a href="#.html">'+val.name+'</a></li>');
+                $('#tags').append('<li id="tag-'+val.id+'"><a href="#.html">'+val.name+'</a></li>');
             });
             $('#tags').listview('refresh');     
         });  
@@ -129,8 +139,8 @@ $.extend({
     debugInfo:function() {
         console.log('page: ' + $('[data-role=page]').attr('id'));
         console.log('hub id: ' +  $.getLocal('cHubId'));
-        console.log('---');
         console.log('cur item:' + $.getLocal('cItemId'));
+        console.log('---');
     }
 });
 
@@ -142,7 +152,7 @@ $(document).ready(function(){
                 $.getHubs($.links().hub);
                 break;
             case 'items_page':
-                $.getItems($.links().items);
+                $.getItems("normal",$.links().items);
                 break;
             case 'inputs_page':
                 $.getInputs($.links().inputs);
