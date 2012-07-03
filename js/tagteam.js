@@ -5,28 +5,27 @@
  *
  */
 
-
-
 $.extend({
-    item_range : [0,20],
-    
-    root:function() {
+    item_range:[0, 20],
+
+    root:function () {
         return 'http://tagteam.harvard.edu';
     },
-    
-    links:function(args) {
+
+    links:function (args) {
         return {
-            'hub':  $.root()+'/hubs.json?callback=?',
-            'items':$.root()+'/hubs/'+$.getLocal('cHubId')+'/items.json?callback=?',
-            'inputs':$.root()+'/hubs/'+$.getLocal('cHubId')+'/hub_feeds.json?callback=?',
-            'tags':$.root()+'/hubs/'+$.getLocal('cHubId')+'/tags.json?callback=?',
-            'tags_items':$.root()+'/hubs'+$.getLocal('cHubId')+'tag/json/'+args+'?callback=?'
+            'hub':$.root() + '/hubs.json?callback=?',
+            'items':$.root() + '/hubs/' + $.getLocal('cHubId') + '/items.json?callback=?',
+            'inputs':$.root() + '/hubs/' + $.getLocal('cHubId') + '/hub_feeds.json?callback=?',
+            'tags':$.root() + '/hubs/' + $.getLocal('cHubId') + '/tags.json?callback=?',
+            'tags_items':$.root() + '/hubs' + $.getLocal('cHubId') + 'tag/json/' + args + '?callback=?'
         }
     },
-    
-    getHubs:function(link) {
-        
-        $.getJSON(link, {}, function(json){
+
+    getHubs:function (link) {
+        /*Clearing localstorage if we are on the main page*/
+        localStorage.clear();
+        $.getJSON(link, {}, function (json) {
             $('#hubs').empty();
             $.each(json.hubs, function (key, val) {
                 var desc = '';
@@ -34,96 +33,96 @@ $.extend({
                     desc = val.description;
                 }
                 $("#hubs").append(
-                    '<li><a href="hub.html" data-transition="slidedown" data-rel="dialog" '+
-                    'id="hub-'+val.id+'" class="ui-link-inherit">'+'<h3 class="ui-li-heading">'+
-                    val.title+'</h3><p class="ui-li-desc">'+desc+'</p></a></li>'); 
+                    '<li><a href="hub.html" data-transition="slidedown" data-rel="dialog" ' +
+                        'id="hub-' + val.id + '" class="ui-link-inherit">' + '<h3 class="ui-li-heading">' +
+                        val.title + '</h3><p class="ui-li-desc">' + desc + '</p></a></li>');
             });
             $('#hubs').listview('refresh');
         });
-	
-        $("a[id^='hub']").live('tap',function(e) {
+
+        $("a[id^='hub']").live('tap', function (e) {
             $.setLocal('cHubId', $(this).attr('id').split('-')[1]);
         });
     },
-    
-    getItems:function(type,link) {
+
+    getItems:function (mode,link) {
         var hub = $.getLocal('cHubId');
-        $.getJSON(link, {}, function(json){  
+        $.getJSON(link, {}, function (json) {
+            $("#items").empty();
             $.each(json.feed_items, function (key, item) {
-                switch (type) {
-                    case 'normal':
-                        if ((key >= $.item_range[0]) && (key <= $.item_range[1])) {
-                            var numbers = item.hub_ids.slice(',');
-                            for (var i=0; i<numbers.length; i++) {
-                                if(numbers[i]==hub) {
-                                    $("#items").append(
-                                        '<li><a id="item-'+item.id+
-                                        '" href="./cItem.html" class="ui-link-inherit">'+
-                                        '<h3 class="ui-li-heading">'+item.title+'</h3><p class="ui-li-desc">by '+           
-                                        item.authors+'</p></a></li>'); 
-                                    $("#item-"+item.id).live('tap',function(e) {
-                                        $.setLocal('cItemId',key);
-                                    });
-                                }
-                            }
-                        }
-                        break;
-                    case 'tags-items':
-                        break;
-                    case 'inputs-items':
-                        break;
-                }  
+                //if ((key >= $.item_range[0]) && (key <= $.item_range[1])) {
+                var numbers = item.hub_ids.slice(',');
+                for (var i = 0; i < numbers.length; i++) {
+                    if (numbers[i] == hub) {
+                        $("#items").append(
+                            '<li><a id="item-' + item.id +
+                                '" href="./cItem.html" class="ui-link-inherit">' +
+                                '<h3 class="ui-li-heading">' + item.title + '</h3><p class="ui-li-desc">by ' +
+                                item.authors + '</p></a></li>');
+                        $("#item-" + item.id).live('tap', function (e) {
+                            $.setLocal('cItemId', key);
+                        });
+                    }
+                }
+                //}
             });
-            $('#items').listview('refresh');    
+            $('#items').listview('refresh');
         });
     },
-    
-    getInputs:function(link) {
-        $.getJSON(link, {}, function(json){   
+
+    getInputs:function (link) {
+        $.getJSON(link, {}, function (json) {
             $("#inputs").empty();
-            $.each(json.hub_feeds, function(key,val){
+            $.each(json.hub_feeds, function (key, val) {
                 if (val.hub.id == $.getLocal('cHubId')) {
-                    $('#inputs').append('<li><a href="acura.html"><img src="./css/icons/rss-01.png"></img>'+val.title+'<p class="ui-li-desc">'+val.description+'</p></a></li>');
+                    $('#inputs').append('<li><a href="acura.html"><img src="./css/icons/rss-01.png">Img</img>' + val.title + '<p class="ui-li-desc">' + val.description + '</p></a></li>');
                 }
             });
-            $('#inputs').listview('refresh');     
+            $('#inputs').listview('refresh');
         });
     },
-    
-    getTags:function(link) {
-        $.getJSON(link, {}, function(json){   
+
+    getTags:function (link) {
+        $.getJSON(link, {}, function (json) {
             $("#tags").empty();
-            $.each(json.tags, function(key,val){
-                $('#tags').append('<li id="tag-'+val.id+'"><a href="items.html">'+val.name+'</a></li>');
-                $('#tag-'+val.id).live('tap',function(e) {
-                    $.setLocal('tagItems',true);
-                    $.setLocal('tagName',val.name);
+            $.each(json.tags, function (key, val) {
+                $('#tags').append('<li id="tag-' + val.id + '"><a href="items.html">' + val.name + '</a></li>');
+                $('#tag-' + val.id).live('tap', function (e) {
+                    $.setLocal('tagItems', true);
+                    $.setLocal('tagName', val.name);
                 });
             });
-            $('#tags').listview('refresh');     
-        });  
+            $('#tags').listview('refresh');
+        });
     },
-    
-    getCurrentItem:function(link) {
-        $.getJSON(link, {}, function(json){ 
+
+    getCurrentItem:function (link) {
+        $.getJSON(link, {}, function (json) {
             var item = json.feed_items[$.getLocal('cItemId')];
-            $('#itemid').html('Item '+item.id);
+            $('#itemid').html('Item ' + item.id);
             $('#title').html(item.title);
-            $('#published').html(item.date_published.replace('T',' ').slice(0,item.date_published.length-6));
-            $('#updated').html(item.last_updated.replace('T',' ').slice(0,item.last_updated.length-6))
+            $('#published').html(item.date_published.replace('T', ' ').slice(0, item.date_published.length - 9));
+            $('#updated').html(item.last_updated.replace('T', ' ').slice(0, item.last_updated.length - 9))
             $('#authors').html(item.authors);
-            $('#url').attr('href',item.url); 
-            var tags = item.tags.tags.slice(',');
+            $('#url').attr('href', item.url);
             $('#tags').empty();
-            $.each(tags, function(key,val){
-                $('#tags').append('<li><a href="index.html">'+val+'</a></li>');
-            });
-            $('#tags').listview('refresh'); 
+            console.log(item.tags.length);
+            if (item.tags.tags.length > 0) {
+                var tags = item.tags.tags.slice(',');
+                $.each(tags, function (key, val) {
+                    $('#tag_list').append('<li  id="tag-' + key + '"><a href="items.html"">' + val + '</a></li>');
+                    $('#tag-' + key).live('tap', function (e) {
+                        $.setLocal('tagItems', true);
+                        $.setLocal('tagName', val);
+                    });
+                });
+            }
+            $('#tag_list').listview('refresh');
         })
     },
-    
-    setLocal:function(key,data) {
-        if(typeof(localStorage) == 'undefined' ) {
+
+    setLocal:function (key, data) {
+        if (typeof(localStorage) == 'undefined') {
             console.log('Your browser does not support localStorage()');
         }
         else {
@@ -137,26 +136,39 @@ $.extend({
             }
         }
     },
-    
-    getLocal:function(key) {
+
+    getLocal:function (key) {
         try {
             return localStorage.getItem(key)
-        } 
+        }
         catch (e) {
             console.log('Wrong key');
         }
     },
-    
-    debugInfo:function() {
+
+    removeLocal:function (key) {
+        try {
+            localStorage.removeItem(key);
+        } catch (e) {
+            if (e == QUOTA_EXCEEDED_ERR) {
+                console.log('Cant delete "' + key + '" item');
+            }
+        }
+    },
+
+    debugInfo:function () {
         console.log('page: ' + $('[data-role=page]').attr('id'));
-        console.log('hub id: ' +  $.getLocal('cHubId'));
+        console.log('hub id: ' + $.getLocal('cHubId'));
         console.log('cur item:' + $.getLocal('cItemId'));
+
+        console.log('tagname - ' + $.getLocal('tagName') + ';' +
+            ' ||| LINK:' + $.links(($.getLocal('tagName'))).tags_items);
         console.log('---');
     }
 });
 
-$(document).ready(function(){
-    
+$(document).ready(function () {
+
     $('[data-role=page]').live('pageshow', function () {
         switch ($(this).attr('id')) {
             case 'index':
@@ -164,10 +176,10 @@ $(document).ready(function(){
                 break;
             case 'items_page':
                 if ($.getLocal('tagItems') == true) {
-                    $.getItems("normal",$.links($.getLocal('tagName')).tags_item);
-                    $.setLocal('tagItems') = false;
+                    $.getItems("tags",$.links($.getLocal('tagName')).tags_item);
+                    $.removeLocal('tagItems');
                 } else {
-                    $.getItems("normal",$.links().items);
+                    $.getItems("",$.links().items);
                 }
                 break;
             case 'inputs_page':
@@ -175,8 +187,10 @@ $(document).ready(function(){
                 break;
             case 'current_item':
                 $.getCurrentItem($.links().items);
+                break;
             case 'tags_page':
                 $.getTags($.links().tags);
+                break;
         }
         $.debugInfo();
     });
