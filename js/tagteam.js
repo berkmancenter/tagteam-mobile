@@ -9,16 +9,17 @@ $.extend({
     item_range:[0, 20],
 
     root:function () {
-        return 'http://tagteam.harvard.edu';
+        return 'http://tagteam.harvard.edu/hubs';
     },
 
     links:function (args) {
         return {
-            'hub':$.root() + '/hubs.json?callback=?',
-            'items':$.root() + '/hubs/' + $.getLocal('cHubId') + '/items.json?callback=?',
-            'inputs':$.root() + '/hubs/' + $.getLocal('cHubId') + '/hub_feeds.json?callback=?',
-            'tags':$.root() + '/hubs/' + $.getLocal('cHubId') + '/tags.json?callback=?',
-            'tags_items':$.root() + '/hubs' + $.getLocal('cHubId') + 'tag/json/' + args + '?callback=?'
+            hub         :$.root() + '.json?callback=?',
+            items       :$.root() + '/' + $.getLocal('cHubId') + '/items.json?callback=?',
+            inputs      :$.root() + '/' + $.getLocal('cHubId') + '/hub_feeds.json?callback=?',
+            tags        :$.root() + '/' + $.getLocal('cHubId') + '/tags.json?callback=?',
+            tags_items  :$.root() + '/' + $.getLocal('cHubId') + '/tag/json/' + args + '?callback=?',
+            inputs_items:$.root() + '/' + $.getLocal('cHubId') + ''
         }
     },
 
@@ -75,7 +76,8 @@ $.extend({
             $("#inputs").empty();
             $.each(json.hub_feeds, function (key, val) {
                 if (val.hub.id == $.getLocal('cHubId')) {
-                    $('#inputs').append('<li><a href="#"><img src="./css/icons/rss-01.png">Img</img>' + val.title + '<p class="ui-li-desc">' + val.description + '</p></a></li>');
+                    $('#inputs').append('<li><a href="#"><img src="./css/icons/rss-01.png">Img</img>' + val.title +
+                        '<p class="ui-li-desc" style="margin-top: 10px !important;">' + val.description + '</p></a></li>');
                 }
             });
             $('#inputs').listview('refresh');
@@ -106,7 +108,6 @@ $.extend({
             $('#authors').html(item.authors);
             $('#url').attr('href', item.url);
             $('#tags').empty();
-            console.log(item.tags.length);
             if (item.tags.tags.length > 0) {
                 var tags = item.tags.tags.slice(',');
                 $.each(tags, function (key, val) {
@@ -158,9 +159,9 @@ $.extend({
 
     debugInfo:function () {
         console.log('page: ' + $('[data-role=page]').attr('id'));
-        console.log('hub id: ' + $.getLocal('cHubId'));
-        console.log('cur item:' + $.getLocal('cItemId'));
-
+        for (var key in localStorage){
+            console.log(key, " = ", localStorage[key]);
+        }
         console.log('tagname - ' + $.getLocal('tagName') + ';' +
             ' ||| LINK:' + $.links(($.getLocal('tagName'))).tags_items);
         console.log('---');
@@ -168,15 +169,14 @@ $.extend({
 });
 
 $(document).ready(function () {
-
     $('[data-role=page]').live('pageshow', function () {
         switch ($(this).attr('id')) {
             case 'index':
                 $.getHubs($.links().hub);
                 break;
             case 'items_page':
-                if ($.getLocal('tagItems') == true) {
-                    $.getItems("tags",$.links($.getLocal('tagName')).tags_item);
+                if ($.getLocal('tagItems') == 'true') {
+                    $.getItems("",$.links(($.getLocal('tagName'))).tags_items);
                     $.removeLocal('tagItems');
                 } else {
                     $.getItems("",$.links().items);
