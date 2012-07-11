@@ -15,11 +15,11 @@ $.extend({
     links:function (args) {
         return {
             hub         :$.root() + '.json?callback=?',
-            items       :$.root() + '/' + $.getLocal('cHubId') + '/items.json?callback=?',
-            inputs      :$.root() + '/' + $.getLocal('cHubId') + '/hub_feeds.json?callback=?',
-            tags        :$.root() + '/' + $.getLocal('cHubId') + '/tags.json?callback=?',
-            tags_items  :$.root() + '/' + $.getLocal('cHubId') + '/tag/json/' + args + '?callback=?',
-            inputs_items:$.root() + '/' + $.getLocal('cHubId') + ''
+            items       :$.root() + '/' + $.local.get('cHubId') + '/items.json?callback=?',
+            inputs      :$.root() + '/' + $.local.get('cHubId') + '/hub_feeds.json?callback=?',
+            tags        :$.root() + '/' + $.local.get('cHubId') + '/tags.json?callback=?',
+            tags_items  :$.root() + '/' + $.local.get('cHubId') + '/tag/json/' + args + '?callback=?',
+            inputs_items:$.root() + '/' + $.local.get('cHubId') + ''
         }
     },
 
@@ -42,12 +42,12 @@ $.extend({
         });
 
         $("a[id^='hub']").live('tap', function (e) {
-            $.setLocal('cHubId', $(this).attr('id').split('-')[1]);
+            $.local.set('cHubId', $(this).attr('id').split('-')[1]);
         });
     },
 
     getItems:function (mode,link) {
-        var hub = $.getLocal('cHubId');
+        var hub = $.local.get('cHubId');
         $.getJSON(link, {}, function (json) {
             $("#items").empty();
             $.each(json.feed_items, function (key, item) {
@@ -61,7 +61,9 @@ $.extend({
                                 '<h3 class="ui-li-heading">' + item.title + '</h3><p class="ui-li-desc">by ' +
                                 item.authors + '</p></a></li>');
                         $("#item-" + item.id).live('tap', function () {
-                            $.setLocal('cItemId', key);
+
+                            $.local.set('cItem', $.stringify(item));
+                            $.local.set('cItemId', key);
                         });
                     }
                 }
@@ -75,7 +77,7 @@ $.extend({
         $.getJSON(link, {}, function (json) {
             $("#inputs").empty();
             $.each(json.hub_feeds, function (key, val) {
-                if (val.hub.id == $.getLocal('cHubId')) {
+                if (val.hub.id == $.local.get('cHubId')) {
                     $('#inputs').append('<li><a href="#"><img src="./css/icons/rss-01.png">Img</img>' + val.title +
                         '<p class="ui-li-desc" style="margin-top: 10px !important;">' + val.description + '</p></a></li>');
                 }
@@ -90,8 +92,8 @@ $.extend({
             $.each(json.tags, function (key, val) {
                 $('#tags').append('<li id="tag-' + val.id + '"><a href="items.html">' + val.name + '</a></li>');
                 $('#tag-' + val.id).live('tap', function (e) {
-                    $.setLocal('tagItems', true);
-                    $.setLocal('tagName', val.name);
+                    $.local.set('tagItems', true);
+                    $.local.set('tagName', val.name);
                 });
             });
             $('#tags').listview('refresh');
@@ -99,62 +101,87 @@ $.extend({
     },
 
     getCurrentItem:function (link) {
-        $.getJSON(link, {}, function (json) {
-            var item = json.feed_items[$.getLocal('cItemId')];
-            $('#itemid').html('Item ' + item.id);
+        var item = $.parseJSON($.local.get('cItem')); //json.feed_items[$.local.get('cItemId')];
+        $('#itemid').html('Item ' + item.id);
             $('#title').html(item.title);
             $('#published').html(item.date_published.replace('T', ' ').slice(0, item.date_published.length - 9));
             $('#updated').html(item.last_updated.replace('T', ' ').slice(0, item.last_updated.length - 9));
             $('#authors').html(item.authors);
             $('#url').attr('href', item.url);
             $('#tags').empty();
-            if (item.tags.tags.length > 0) {
-                var tags = item.tags.tags.slice(',');
-                $.each(tags, function (key, val) {
+                $.each(item.tags.tags, function (key, val) {
                     $('#tag_list').append('<li  id="tag-' + key + '"><a href="items.html"">' + val + '</a></li>');
                     $('#tag-' + key).live('tap', function () {
-                        $.setLocal('tagItems', true);
-                        $.setLocal('tagName', val);
+                        $.local.set('tagItems', true);
+                        $.local.set('tagName', val);
                     });
                 });
-            }
             $('#tag_list').listview('refresh');
-        })
     },
 
-    setLocal:function (key, data) {
-        if (typeof(localStorage) == 'undefined') {
-            console.log('Your browser does not support localStorage()');
-        }
-        else {
+    local: {
+        set: function (key, data) {
+            if (typeof(localStorage) == 'undefined') {
+                console.log('Your browser does not support localStorage()');
+            }
+            else {
+                try {
+                    localStorage.setItem(key, data);
+                }
+                catch (e) {
+                    if (e == QUOTA_EXCEEDED_ERR) {
+                        console.log('No place in localstorage');
+                    }
+                }
+            }
+        },
+
+        get:function (key) {
             try {
-                localStorage.setItem(key, data);
+                return localStorage.getItem(key)
             }
             catch (e) {
+                console.log('Wrong key');
+            }
+        },
+
+        remove:function (key) {
+            try {
+                localStorage.removeItem(key);
+            } catch (e) {
                 if (e == QUOTA_EXCEEDED_ERR) {
-                    console.log('No place in localstorage');
+                    console.log('Cant delete "' + key + '" item');
                 }
             }
         }
+
     },
 
-    getLocal:function (key) {
-        try {
-            return localStorage.getItem(key)
-        }
-        catch (e) {
-            console.log('Wrong key');
-        }
-    },
-
-    removeLocal:function (key) {
-        try {
-            localStorage.removeItem(key);
-        } catch (e) {
-            if (e == QUOTA_EXCEEDED_ERR) {
-                console.log('Cant delete "' + key + '" item');
+    stringify: function (jsonData,tabMultiple) {
+        var tab = "";
+        if(!tabMultiple)
+            tabMultiple = 1;
+        var strJsonData = '{';
+        var itemCount = 0;
+        for (var item in jsonData) {
+            if (itemCount > 0) {
+                strJsonData += ',';
             }
+            temp = jsonData[item];
+            if (typeof(temp) == 'object') {
+                tabMultiple++;
+                s = $.stringify(temp,tabMultiple);
+                tabMultiple--;
+            }
+            else{
+                tabMultiple--;
+                s = '"' + temp + '"';
+            }
+            strJsonData += tab + '"' + item + '":' + s;
+            itemCount++;
         }
+        strJsonData += tab + '}';
+        return strJsonData;
     },
 
     debugInfo:function () {
@@ -162,8 +189,10 @@ $.extend({
         for (var key in localStorage){
             console.log(key, " = ", localStorage[key]);
         }
-        console.log('tagname - ' + $.getLocal('tagName') + ';' +
-            ' ||| LINK:' + $.links(($.getLocal('tagName'))).tags_items);
+        console.log('tagname - ' + $.local.get('tagName') + ';' +
+            ' ||| LINK:' + $.links(($.local.get('tagName'))).tags_items);
+        console.log('---');
+        console.log($.local.get('cItem'));
         console.log('---');
     }
 });
@@ -175,9 +204,9 @@ $(document).ready(function () {
                 $.getHubs($.links().hub);
                 break;
             case 'items_page':
-                if ($.getLocal('tagItems') == 'true') {
-                    $.getItems("",$.links(($.getLocal('tagName'))).tags_items);
-                    $.removeLocal('tagItems');
+                if ($.local.get('tagItems') == 'true') {
+                    $.getItems("",$.links(($.local.get('tagName'))).tags_items);
+                    $.local.remove('tagItems');
                 } else {
                     $.getItems("",$.links().items);
                 }
@@ -192,6 +221,6 @@ $(document).ready(function () {
                 $.getTags($.links().tags);
                 break;
         }
-        $.debugInfo();
+      //  $.debugInfo();
     });
 });
