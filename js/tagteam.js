@@ -59,7 +59,7 @@ $.extend({
                                 '" href="./cItem.html" class="ui-link-inherit">' +
                                 '<h3 class="ui-li-heading">' + item.title + '</h3><p class="ui-li-desc">by ' +
                                 item.authors + '</p></a></li>');
-                        $("#item-" + item.id).live('tap', function (e) {
+                        $("#item-" + item.id).live('tap', function () {
                             $.setLocal('cItemId', key);
                         });
                     }
@@ -75,7 +75,7 @@ $.extend({
             $("#inputs").empty();
             $.each(json.hub_feeds, function (key, val) {
                 if (val.hub.id == $.getLocal('cHubId')) {
-                    $('#inputs').append('<li><a href="acura.html"><img src="./css/icons/rss-01.png">Img</img>' + val.title + '<p class="ui-li-desc">' + val.description + '</p></a></li>');
+                    $('#inputs').append('<li><a href="#"><img src="./css/icons/rss-01.png">Img</img>' + val.title + '<p class="ui-li-desc">' + val.description + '</p></a></li>');
                 }
             });
             $('#inputs').listview('refresh');
@@ -102,7 +102,7 @@ $.extend({
             $('#itemid').html('Item ' + item.id);
             $('#title').html(item.title);
             $('#published').html(item.date_published.replace('T', ' ').slice(0, item.date_published.length - 9));
-            $('#updated').html(item.last_updated.replace('T', ' ').slice(0, item.last_updated.length - 9))
+            $('#updated').html(item.last_updated.replace('T', ' ').slice(0, item.last_updated.length - 9));
             $('#authors').html(item.authors);
             $('#url').attr('href', item.url);
             $('#tags').empty();
@@ -111,7 +111,7 @@ $.extend({
                 var tags = item.tags.tags.slice(',');
                 $.each(tags, function (key, val) {
                     $('#tag_list').append('<li  id="tag-' + key + '"><a href="items.html"">' + val + '</a></li>');
-                    $('#tag-' + key).live('tap', function (e) {
+                    $('#tag-' + key).live('tap', function () {
                         $.setLocal('tagItems', true);
                         $.setLocal('tagName', val);
                     });

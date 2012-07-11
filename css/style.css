@@ -1,6 +1,7 @@
 body {
     margin: 0;
     padding: 0;
+    font-family: Arial, Helvatica, serif;
 }
 
 #menu_nav .ui-btn .ui-icon { width: 30px!important; 
@@ -28,4 +29,8 @@ body {
 
 #title {
     font-weight: bold;
+}
+
+.about-text {
+    font-size: 11pt;
 }
