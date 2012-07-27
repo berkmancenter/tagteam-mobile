@@ -6,8 +6,6 @@
  */
 
 $.extend({
-    item_range:[0, 20],
-
     root:function () {
         return 'http://tagteam.harvard.edu/hubs';
     },
