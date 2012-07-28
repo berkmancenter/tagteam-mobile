@@ -17,7 +17,8 @@ $.extend({
             inputs      :$.root() + '/' + $.local.get('cHubId') + '/hub_feeds.json?callback=?',
             tags        :$.root() + '/' + $.local.get('cHubId') + '/tags.json?callback=?',
             tags_items  :$.root() + '/' + $.local.get('cHubId') + '/tag/json/' + args + '?callback=?',
-            inputs_items:$.root() + '/' + $.local.get('cHubId') + ''
+            inputs_items:$.root() + '/' + $.local.get('cHubId') + '',
+            remixes     :$.root() + '/hubs/'+args+'/republished_feeds.json' /*args = feed ID*/
         }
     },
 
@@ -219,6 +220,6 @@ $(document).ready(function () {
                 $.getTags($.links().tags);
                 break;
         }
-      //  $.debugInfo();
+        $.debugInfo();
     });
 });

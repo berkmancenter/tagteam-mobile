@@ -13,51 +13,45 @@
     <script type="text/javascript" src="./js/jquery.mobile-1.1.0.min.js"></script>
 </head>
 <body>
-<div data-role="page" id="current_item">
-    <div data-role="header" data-position="fixed">
-        <h1 id="itemid"></h1>
-        <a href="items.html" data-role="button" data-icon="back" data-iconpos="notext" data-mini="true"
-           data-inline="true" data-corners="true" data-shadow="false" data-iconshadow="false" data-wrapperels="span"
-           class="ui-btn-left">back</a>
-        <a href="#" data-role="button" data-icon="search" data-iconpos="notext" data-mini="true" data-inline="true"
-           data-corners="true" data-shadow="false" data-iconshadow="false" data-wrapperels="span" class="ui-btn-right">search</a>
-
-        <div data-role="navbar">
-            <ul>
-                <li><a href="#">Summary</a></li>
-                <!--<li><a href="#">Filters</a></li>-->
-                <li><a href="#">Related Items</a></li>
-            </ul>
-        </div>
-    </div>
-    <div data-role="content" data-theme="a">
-        <div id="title"></div>
-        <br/>
-
-        Authors: <span id="authors"></span><br/>
-        <a id="url" href="" data-role="button">URL</a>
-
-        <div data-role="collapsible-set" data-iconpos="top">
-
-            <div data-role="collapsible">
-                <h3>Tags</h3>
-
-                <p>
-                <ul id="tag_list" data-role="listview">
+    <div data-role="page" id="current_item">
+        <div data-role="header" data-position="fixed">
+            <h1 id="itemid"></h1>
+            <a href="./index.html" data-icon="back" data-iconpos="notext" data-mini="true" data-inline="true"
+               data-corners="true" data-shadow="false" data-iconshadow="false" data-wrapperels="span" class="ui-btn-left">back</a>
+            <a href="#" data-role="button" data-icon="search" data-iconpos="notext" data-mini="true" data-inline="true"
+               data-corners="true" data-shadow="false" data-iconshadow="false" data-wrapperels="span" class="ui-btn-right">search</a>
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="./hub.html">Menu</a></li>
+                    <li><a href="#">Related Items</a></li>
                 </ul>
-                <p/>
-
             </div>
+        </div>
+        <div data-role="content" data-theme="a">
+            <div id="title">
+            </div>
+            <br/>
 
-            <div data-role="collapsible">
-                <h3>Info</h3>
+            Authors: <span id="authors"></span><br/>
+            <a id="url" href="" data-role="button">URL</a>
 
-                <p>Published: <span id="published"></span></p>
+            <div data-role="collapsible-set" data-iconpos="top">
 
-                <p>Updated: <span id="updated"></span></p>
+                <div data-role="collapsible">
+                    <h3>Tags</h3>
+                    <p>
+                        <ul id="tag_list" data-role="listview">
+                        </ul>
+                    <p/>
+                </div>
+
+                <div data-role="collapsible">
+                    <h3>Info</h3>
+                    <p>Published: <span id="published"></span></p>
+                    <p>Updated: <span id="updated"></span></p>
+                </div>
             </div>
         </div>
     </div>
-</div>
 </body>
 </html>
