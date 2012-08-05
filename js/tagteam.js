@@ -18,7 +18,8 @@ $.extend({
             tags        :$.root() + '/' + $.local.get('cHubId') + '/tags.json?callback=?',
             tags_items  :$.root() + '/' + $.local.get('cHubId') + '/tag/json/' + args + '?callback=?',
             inputs_items:$.root() + '/' + $.local.get('cHubId') + '',
-            remixes     :$.root() + '/hubs/' + $.local.get('cHubId') + '/republished_feeds.json' /*args = feed ID*/
+            remixes     :$.root() + '/hubs/' + $.local.get('cHubId') + '/republished_feeds.json?callback=?', /*args = feed ID*/
+            content     :'http://tagteam.harvard.edu/hub_feeds/'+args.hub_feeds+'/feed_items/'+args.feed_id + '/content.json?callback=?'
         }
     },
 
@@ -100,6 +101,10 @@ $.extend({
     },
 
     getRemixes:function(link) {
+
+    },
+
+    getContent:function(link) {
 
     },
 
