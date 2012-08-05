@@ -18,7 +18,7 @@ $.extend({
             tags        :$.root() + '/' + $.local.get('cHubId') + '/tags.json?callback=?',
             tags_items  :$.root() + '/' + $.local.get('cHubId') + '/tag/json/' + args + '?callback=?',
             inputs_items:$.root() + '/' + $.local.get('cHubId') + '',
-            remixes     :$.root() + '/hubs/'+args+'/republished_feeds.json' /*args = feed ID*/
+            remixes     :$.root() + '/hubs/' + $.local.get('cHubId') + '/republished_feeds.json' /*args = feed ID*/
         }
     },
 
@@ -97,6 +97,10 @@ $.extend({
             });
             $('#tags').listview('refresh');
         });
+    },
+
+    getRemixes:function(link) {
+
     },
 
     getCurrentItem:function (link) {
@@ -218,6 +222,9 @@ $(document).ready(function () {
                 break;
             case 'tags_page':
                 $.getTags($.links().tags);
+                break;
+            case 'remix_page':
+                $.getRemixes($.links().remixes);
                 break;
         }
         $.debugInfo();
