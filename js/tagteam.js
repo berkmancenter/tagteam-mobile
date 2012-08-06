@@ -78,7 +78,7 @@ $.extend({
             $("#inputs").empty();
             $.each(json.hub_feeds, function (key, val) {
                 if (val.hub.id == $.local.get('cHubId')) {
-                    $('#inputs').append('<li><a href="#"><img src="./css/icons/rss-01.png">Img</img>' + val.title +
+                    $('#inputs').append('<li><a href="#"><img src="./css/icons/rss.png">Img</img>' + val.title +
                         '<p class="ui-li-desc" style="margin-top: 10px !important;">' + val.description + '</p></a></li>');
                 }
             });
