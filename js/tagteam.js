@@ -10,16 +10,16 @@ $.extend({
         return 'http://tagteam.harvard.edu/hubs';
     },
 
-    links:function (args) {
+    links:function (arg1,arg2) {
         return {
             hub         :$.root() + '.json?callback=?',
             items       :$.root() + '/' + $.local.get('cHubId') + '/items.json?callback=?',
             inputs      :$.root() + '/' + $.local.get('cHubId') + '/hub_feeds.json?callback=?',
             tags        :$.root() + '/' + $.local.get('cHubId') + '/tags.json?callback=?',
-            tags_items  :$.root() + '/' + $.local.get('cHubId') + '/tag/json/' + args + '?callback=?',
+            tags_items  :$.root() + '/' + $.local.get('cHubId') + '/tag/json/' + arg1 + '?callback=?',
             inputs_items:$.root() + '/' + $.local.get('cHubId') + '',
             remixes     :$.root() + '/hubs/' + $.local.get('cHubId') + '/republished_feeds.json?callback=?', /*args = feed ID*/
-            content     :'http://tagteam.harvard.edu/hub_feeds/'+args.hub_feeds+'/feed_items/'+args.feed_id + '/content.json?callback=?'
+            content     :'http://tagteam.harvard.edu/hub_feeds/'+arg1+'/feed_items/'+arg2 + '/content.json?callback=?'
         }
     },
 
@@ -104,27 +104,26 @@ $.extend({
 
     },
 
-    getContent:function(link) {
-
-    },
-
     getCurrentItem:function (link) {
         var item = $.parseJSON($.local.get('cItem')); //json.feed_items[$.local.get('cItemId')];
-        $('#itemid').html('Item ' + item.id);
-            $('#title').html(item.title);
-            $('#published').html(item.date_published.replace('T', ' ').slice(0, item.date_published.length - 9));
-            $('#updated').html(item.last_updated.replace('T', ' ').slice(0, item.last_updated.length - 9));
-            $('#authors').html(item.authors);
-            $('#url').attr('href', item.url);
-            $('#tags').empty();
-                $.each(item.tags.tags, function (key, val) {
-                    $('#tag_list').append('<li  id="tag-' + key + '"><a href="items.html"">' + val + '</a></li>');
-                    $('#tag-' + key).live('tap', function () {
-                        $.local.set('tagItems', true);
-                        $.local.set('tagName', val);
+        $.getJSON($.links(item.hub_feed_ids[0],item.id).content, {}, function(json){
+            $('#itemid').html('Item ' + item.id);
+                $('#title').html(item.title);
+                $('#published').html(item.date_published.replace('T', ' ').slice(0, item.date_published.length - 9));
+                $('#updated').html(item.last_updated.replace('T', ' ').slice(0, item.last_updated.length - 9));
+                $('#authors').html(item.authors);
+                $('#content').html(json.feed_item.content);
+                $('#url').attr('href', item.url);
+                $('#tags').empty();
+                    $.each(item.tags.tags, function (key, val) {
+                        $('#tag_list').append('<li  id="tag-' + key + '"><a href="items.html"">' + val + '</a></li>');
+                        $('#tag-' + key).live('tap', function () {
+                            $.local.set('tagItems', true);
+                            $.local.set('tagName', val);
+                        });
                     });
-                });
-            $('#tag_list').listview('refresh');
+                $('#tag_list').listview('refresh');
+        });
     },
 
     local: {
