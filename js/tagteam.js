@@ -18,7 +18,7 @@ $.extend({
             tags        :$.root() + '/' + $.local.get('cHubId') + '/tags.json?callback=?',
             tags_items  :$.root() + '/' + $.local.get('cHubId') + '/tag/json/' + arg1 + '?callback=?',
             inputs_items:$.root() + '/' + $.local.get('cHubId') + '',
-            remixes     :$.root() + '/hubs/' + $.local.get('cHubId') + '/republished_feeds.json?callback=?', /*args = feed ID*/
+            remixes     :$.root() + '/' + $.local.get('cHubId') + '/republished_feeds.json?callback=?', /*args = feed ID*/
             content     :'http://tagteam.harvard.edu/hub_feeds/'+arg1+'/feed_items/'+arg2 + '/content.json?callback=?'
         }
     },
@@ -101,7 +101,15 @@ $.extend({
     },
 
     getRemixes:function(link) {
-
+        $.getJSON(link, {}, function (json) {
+            $("#remixes").empty();
+            $.each(json.republished_feeds, function (key, val) {
+                    $('#remixes').append('<li><a id="remix-'+val.id+'" href="./items.html" class="ui-link-inherit">'+
+                        '<h3 class="ui-li-heading">'+val.title+'/'+val.hub.title+'</h3><p class="ui-li-desc">'+
+                        val.input_sources.length + ' input(s). 0 removal(s).</p></a></li>');
+            });
+            $('#remixes').listview('refresh');
+        });
     },
 
     getCurrentItem:function (link) {
@@ -112,7 +120,7 @@ $.extend({
                 $('#published').html(item.date_published.replace('T', ' ').slice(0, item.date_published.length - 9));
                 $('#updated').html(item.last_updated.replace('T', ' ').slice(0, item.last_updated.length - 9));
                 $('#authors').html(item.authors);
-                $('#content').html(json.feed_item.content);
+                $('#cont').html(json.feed_item.content);
                 $('#url').attr('href', item.url);
                 $('#tags').empty();
                     $.each(item.tags.tags, function (key, val) {
