@@ -19,7 +19,8 @@ $.extend({
             tags_items  :$.root() + '/' + $.local.get('cHubId') + '/tag/json/' + arg1 + '?callback=?',
             inputs_items:$.root() + '/' + $.local.get('cHubId') + '',
             remixes     :$.root() + '/' + $.local.get('cHubId') + '/republished_feeds.json?callback=?', /*args = feed ID*/
-            content     :'http://tagteam.harvard.edu/hub_feeds/'+arg1+'/feed_items/'+arg2 + '/content.json?callback=?'
+            content     :'http://tagteam.harvard.edu/hub_feeds/'+arg1+'/feed_items/'+arg2 + '/content.json?callback=?',
+            bookmarks   :$.root() + '/' + $.local.get('cHubId') + '/bookmark_collections.json?callback=?'
         }
     },
 
@@ -134,6 +135,12 @@ $.extend({
         });
     },
 
+    getBookmarks : function (link) {
+        $.getJSON(link, {}, function (json) {
+
+        })
+    },
+
     local: {
         set: function (key, data) {
             if (typeof(localStorage) == 'undefined') {
@@ -237,6 +244,9 @@ $(document).ready(function () {
                 break;
             case 'remix_page':
                 $.getRemixes($.links().remixes);
+                break;
+            case 'bookmarks_page':
+                $.getBookmarks($.links().bookmarks);
                 break;
         }
         $.debugInfo();
