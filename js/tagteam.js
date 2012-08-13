@@ -137,7 +137,15 @@ $.extend({
 
     getBookmarks : function (link) {
         $.getJSON(link, {}, function (json) {
-
+            $("#bookmarks").empty();
+            $.each(json.hub_feeds, function (key, val) {
+                $('#bookmarks').append('<li><a href="#" class="ui-link-inherit">' +
+                    '<img src="./css/icons/bm.png">Img</img>' +
+                    '<h3 class="ui-li-heading">'
+                    +val.title+'</h3><p class="ui-li-desc">'+
+                     val.description + '</p></a></li>');
+            });
+            $('#bookmarks').listview('refresh');
         })
     },
 
