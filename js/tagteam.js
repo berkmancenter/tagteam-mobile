@@ -124,13 +124,15 @@ $.extend({
                 $('#cont').html(json.feed_item.content);
                 $('#url').attr('href', item.url);
                 $('#tags').empty();
-                    $.each(item.tags.tags, function (key, val) {
-                        $('#tag_list').append('<li  id="tag-' + key + '"><a href="items.html"">' + val + '</a></li>');
-                        $('#tag-' + key).live('tap', function () {
-                            $.local.set('tagItems', true);
-                            $.local.set('tagName', val);
+                    if (item.tags.length > 0) {
+                        $.each(item.tags.tags, function (key, val) {
+                            $('#tag_list').append('<li  id="tag-' + key + '"><a href="items.html"">' + val + '</a></li>');
+                            $('#tag-' + key).live('tap', function () {
+                                $.local.set('tagItems', true);
+                                $.local.set('tagName', val);
+                            });
                         });
-                    });
+                    }
                 $('#tag_list').listview('refresh');
         });
     },
