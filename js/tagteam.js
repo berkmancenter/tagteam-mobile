@@ -56,11 +56,15 @@ $.extend({
                 var numbers = item.hub_ids.slice(',');
                 for (var i = 0; i < numbers.length; i++) {
                     if (numbers[i] == hub) {
+                        var author =  'by ' + item.authors;
+                        if ((item.authors == '') || (item.authors == null)) {
+                            author = ' &nbsp; ';
+                        }
                         $("#items").append(
                             '<li><a id="item-' + item.id +
                                 '" href="./cItem.html" class="ui-link-inherit">' +
-                                '<h3 class="ui-li-heading">' + item.title + '</h3><p class="ui-li-desc">by ' +
-                                item.authors + '</p></a></li>');
+                                '<h3 class="ui-li-heading">' + item.title + '</h3><p class="ui-li-desc">'+
+                                author + '</p></a></li>');
                         $("#item-" + item.id).live('tap', function () {
 
                             $.local.set('cItem', $.stringify(item));
@@ -79,7 +83,7 @@ $.extend({
             $("#inputs").empty();
             $.each(json.hub_feeds, function (key, val) {
                 if (val.hub.id == $.local.get('cHubId')) {
-                    $('#inputs').append('<li><a href="#"><img src="./css/icons/rss.png">Img</img>' + val.title +
+                    $('#inputs').append('<li><a href="#"><!--<img src="./css/icons/rss.png">Img</img>-->' + val.title +
                         '<p class="ui-li-desc" style="margin-top: 10px !important;">' + val.description + '</p></a></li>');
                 }
             });
