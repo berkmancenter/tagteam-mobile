@@ -1,6 +1,11 @@
 *.class
-
+*.DS_Store
 # Package Files #
 *.jar
 *.war
 *.ear
+
+.idea
+.DS_Store
+nbproject
+css/.DS_Store
