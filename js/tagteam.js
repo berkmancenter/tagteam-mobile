@@ -6,9 +6,14 @@
  */
 
 $.extend({
-    root:function () {
-        return 'http://tagteam.harvard.edu/hubs';
+    link: function() {
+        return 'http://tagteam.harvard.edu/';
     },
+
+    root:function () {
+        return $.link()+'hubs';
+    },
+
 
     links:function (arg1,arg2) {
         return {
@@ -19,8 +24,9 @@ $.extend({
             tags_items  :$.root() + '/' + $.local.get('cHubId') + '/tag/json/' + arg1 + '?callback=?',
             inputs_items:$.root() + '/' + $.local.get('cHubId') + '',
             remixes     :$.root() + '/' + $.local.get('cHubId') + '/republished_feeds.json?callback=?', /*args = feed ID*/
-            content     :'http://tagteam.harvard.edu/hub_feeds/'+arg1+'/feed_items/'+arg2 + '/content.json?callback=?',
-            bookmarks   :$.root() + '/' + $.local.get('cHubId') + '/bookmark_collections.json?callback=?'
+            bookmarks   :$.root() + '/' + $.local.get('cHubId') + '/bookmark_collections.json?callback=?',
+            content     :$.link()+'/hub_feeds/'+arg1+'/feed_items/'+arg2+'/content.json?callback=?',
+            related     :$.link()+'/hub_feeds/'+arg1+'/feed_items/'+arg2+'/related.json?callback=?'
         }
     },
 
@@ -138,10 +144,18 @@ $.extend({
                         });
                     }
                 $('#tag_list').listview('refresh');
-
-                $('#related-items').empty();
-
-                $('#related-items').listview('refresh');
+                $.getJSON($.links(item.hub_feed_ids[0],item.id).related, {}, function(rel) {
+                    $('#related-items').empty();
+                    $.each(rel.feed_items, function(k,v){
+                        $('#related-items').append('<li><a  id="rel-'+ v.id+'" href="./cItem.html">'+v.title+'</a></li>');
+                        $("#rel-" + v.id).live('tap', function () {
+                            $.local.set('cItem', $.stringify(v));
+                            $.local.set('cItemId', k);
+                            window.location.reload();
+                        });
+                    });
+                    $('#related-items').listview('refresh');
+                });
         });
     },
 
