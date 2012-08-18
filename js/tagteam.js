@@ -138,6 +138,10 @@ $.extend({
                         });
                     }
                 $('#tag_list').listview('refresh');
+
+                $('#related-items').empty();
+
+                $('#related-items').listview('refresh');
         });
     },
 
