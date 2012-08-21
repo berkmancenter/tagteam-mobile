@@ -1,0 +1,85 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300,600&subset=latin,cyrillic-ext);
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', Verdana, sans-serif !important;
+}
+
+#menu_nav .ui-btn .ui-icon {
+    width: 30px !important;
+    background-color: transparent;
+    background-position: center;
+    height: 30px !important;
+    margin-left: -15px !important;
+    box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    -webkit-border-radius: 0 !important;
+    border-radius: 0 !important;
+}
+
+.ui-icon-tag-items {
+    background-image: url("./icons/item.png");
+}
+
+.ui-icon-tag-about {
+    background-image: url("./icons/about.png");
+}
+
+.ui-icon-tag-inputs {
+    background-image: url("./icons/input.png");
+}
+
+.ui-icon-tag-bookmarks {
+    background-image: url("./icons/bookmark.png");
+}
+
+.ui-icon-tag-remixes {
+    background-image: url("./icons/remixes.png");
+}
+
+.ui-icon-tag-tags {
+    background-image: url("./icons/tags.png");
+}
+
+.ui-icon-tag-filters {
+    background-image: url("./icons/filters.png");
+}
+
+.ui-icon-tag-updates {
+    background-image: url("./icons/updates.png");
+}
+
+.ui-icon-tag-search {
+    background-image: url("./icons/search.png");
+}
+
+.ui-icon-tag-contact {
+    background-image: url("./icons/contact.png");
+}
+
+#title {
+    font-weight: bold;
+}
+
+#cont a {
+    color: white;
+    font-family: 'Open Sans' !important;
+}
+
+.about-text {
+    font-size: 11pt;
+}
+
+h5 {
+    padding: 0;
+    margin: 0;
+}
+
+hr {
+}
+
+.ui-page {
+    background: #2e2e2e;
+}
